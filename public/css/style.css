@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@700&family=Heebo:wght@800&family=Jost:wght@400;600&display=swap');
+body{
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	font-family: 'Jost', sans-serif;
+}
+.main{
+    width: 100vw;
+    height: 100vh;
+	background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#signupdiv{
+     width: 100%;
+     height: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+     color: white;
+     gap: 5%;
+}
+.signtext{
+    font-size: 2vh;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+}
+.signupinput{
+    width: 60%;
+    height: 10%;
+    border-radius: 1vh;
+    text-indent: 5%;
+    font-size: 1.4vh;
+}
+.signupbutton{
+    width: 50%;
+    height: 10%;
+    background-color: #573b8a;
+    border: none;
+    text-indent: 5%;
+    color: white;
+    border-radius: 1vh;
+    cursor: pointer;
+    font-size: 2vh;
+}
+.signupcontent{
+    width: 20%;
+    height: 45%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 85% 15%;
+    background-color: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+    box-shadow: 5px 20px 50px #000;
+    border-radius: 1vh;
+    overflow: hidden;
+}
+.togglesignin{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.loginscroll{
+    width: 100%;
+    height: 550%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #573b8a;
+    background-color: white;
+    font-size: 1.2vh;
+    font-family: 'Jost', sans-serif;
+    /* border-top-right-radius: 35%; */
+    /* border-top-left-radius: 35%; */
+    overflow: hidden;
+    flex-direction: column;
+    gap: 9%;
+    border-radius: 60% / 10%;
+    transition: all 1s ease 0s;
+    user-select: none;
+}
+.signinbutton{
+    width: 50%;
+    height: 10%;
+    background-color: #573b8a;
+    border: none;
+    text-indent: 5%;
+    color: white;
+    border-radius: 1vh;
+    cursor: pointer;
+    font-size: 2vh;
+}

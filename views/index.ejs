@@ -1,0 +1,72 @@
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+<body>
+      <div class="main">  	
+        <div class="signupcontent">
+        <div id="signupdiv" >
+            <div class="signtext" ><h1  >Sign Up</h1></div>
+            <input class="signupinput" id="signupusername" type="text" placeholder="user name" />
+            <input class="signupinput" id="signupemail" type="email" placeholder="email"/>
+            <input class="signupinput" id="signuppassword" type="password" placeholder="password"/>
+            <button class="signupbutton" >Sign Up </button>
+        </div>
+        <div class="togglesignin" >
+            <div class="loginscroll" >
+                <h1>Log In </h1>
+            <input class="signupinput" id="signinemail" type="email" placeholder="email"/>
+            <input class="signupinput" id="signinpassword" type="password" placeholder="password"/>
+            <button class="signinbutton" >Log In</button>
+            <div></div>
+            <p></p>
+            </div>
+        </div>
+    </div>
+
+	  </div>
+
+<script>
+    $('.signupbutton').click(function(){
+       var signupusername=$('#signupusername').val();
+       var signupemail=$('#signupemail').val();
+       var signuppassword=$('#signuppassword').val();
+   
+       var signupdetails={
+         username:signupusername,
+         email:signupemail,
+         password:signuppassword
+
+       }
+       console.log(signupdetails)
+       
+
+       fetch('signupdetails',
+       {
+        method:"POST",
+        headers:{
+           'Content-Type': 'application/json'
+        },
+        body:JSON.stringify({
+            signupcontent:signupdetails
+        })
+       })
+       .then((response)=>{
+          if(response.ok){
+            window.location.href='/notebook';
+          }
+       })
+
+    })
+    $('.signinbutton').click(function(){
+        var signinemail=$('#signinemail').val();
+        var signinpassword=$('#signinpassword').val();
+       fetch('logindetails',{
+        method:"POST",
+        headers:{
+           'Content-Type': 'application/json'
+        }
+       })
+    })
+</script>
+</body>
+<script src="js/script.js"></script>
