@@ -1,0 +1,63 @@
+<%var userdetails=usercontent %>
+<% var userdetailslength=userdetails.length %>
+<!-- <% console.log(userdetails.length)%> -->
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/4759b9b086.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+<div id="notesapp" >
+    <div id="notebookdiv">
+        <div id="headerDiv" >
+         <div id="notebookimgdiv" ><i class="fa-solid fa-book"></i><p>NoteBook</p> </div>
+         <div id="newnotebookdiv"  onclick="newnotebook('<%=username%>')" >+ Notebook</div>
+         <div id="userdiv"><i class="fa-regular fa-circle-user"></i></div>
+        </div>
+        <div id="notebooktextdiv">
+        <h2> Notebooks</h2>
+        </div>
+        <div id="booksdiv" >
+             <% for (let i= userdetailslength ; i>=1  ; i--){ %>
+                <%var id=userdetails[i-1].notebookid%>
+                <div class="note" id="note<%=id%>" >
+                    <div class="notestyle" onclick="viewbooks('<%=username%>','<%=id%>')" ><img class="bookimg"src="../assets/book.jpg"/></div>
+                    <input class="input" type="text" onchange="notebooknamechange('<%=username%>','<%=id%>')" value="<%=userdetails[i-1].notebookname%>" />
+                </div>
+            <% } %>
+
+        </div>
+    </div>
+ </div>
+ <script>
+    function newnotebook(username){
+        console.log(username)
+        fetch(`/newnotebook/${username}`,{
+            method:"POST",
+            headers:{
+                "content-type":"application/json"
+            }
+        })
+        .then((response)=>{
+            if(response.ok){
+            window.location.href=`/notebook/${username}`;
+              
+            }
+        })
+    }
+    function notebooknamechange(username,noteid){
+        fetch(`/updatenotebook/${username}/${Number(noteid)}`,{
+            method:"POST",
+            headers:{
+                "content-type":"application/json"
+            },
+            body:JSON.stringify({
+                notebookname:$('.input').val()
+            })
+        })
+    }
+    function viewbooks(usernamevalue,notesid){
+        let usernamevalues=encodeURIComponent(usernamevalue)
+        let notesidvalue=notesid;
+        window.location.href=`/notes/${usernamevalues}`
+    }
+ </script>

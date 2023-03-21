@@ -48,25 +48,57 @@
         },
         body:JSON.stringify({
             signupcontent:signupdetails
-        })
+        }),
+        redirect:"follow"
        })
        .then((response)=>{
           if(response.ok){
-            window.location.href='/notebook';
+              console.log(response);
+            window.location.href=`/notebook/${signupusername}`;
           }
+       })
+       .catch((error)=>{
+        console.log(error)
        })
 
     })
     $('.signinbutton').click(function(){
-        var signinemail=$('#signinemail').val();
-        var signinpassword=$('#signinpassword').val();
-       fetch('logindetails',{
-        method:"POST",
-        headers:{
-           'Content-Type': 'application/json'
+  var signinemail=$('#signinemail').val();
+  var signinpassword=$('#signinpassword').val();
+  
+  fetch('logindetails', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+         email: signinemail, 
+         password: signinpassword })
+  })
+  .then(response => {
+    return response.json();
+  })
+  .then(data => {
+    console.log(data);
+    // do something with the response data here
+    // console.log(data.logincontent[0])
+    var logincontents=data.logincontent;
+    logincontents.forEach(element => {
+        console.log(element.useremailid)
+        console.log(element.userpassword)
+        if(element.useremailid==signinemail && element.userpassword==signinpassword){
+            window.location.href=`/notebook/${element.username}`;
+            
         }
-       })
-    })
+    });
+
+  })
+  .catch(error => {
+    console.error(error);
+  });
+  
+});
+
 </script>
 </body>
 <script src="js/script.js"></script>
